@@ -16,6 +16,7 @@
 
 package io.pivotal.literx;
 
+import io.reactivex.BackpressureStrategy;
 import java.util.concurrent.CompletableFuture;
 
 import io.pivotal.literx.domain.User;
@@ -41,50 +42,90 @@ public class Part09Adapt {
 
 //========================================================================================
 
-	// TODO Adapt Flux to RxJava Flowable
+  /**
+   * Adapt Flux to RxJava Flowable.
+   *
+   * @param flux flux
+   * @return Flowable
+   */
 	Flowable<User> fromFluxToFlowable(Flux<User> flux) {
-		return null;
+		return Flowable.fromPublisher(flux);
 	}
 
-	// TODO Adapt RxJava Flowable to Flux
+  /**
+   * Adapt RxJava Flowable to Flux.
+   *
+   * @param flowable flowable
+   * @return Flux
+   */
 	Flux<User> fromFlowableToFlux(Flowable<User> flowable) {
-		return null;
+		return Flux.from(flowable);
 	}
 
 //========================================================================================
 
-	// TODO Adapt Flux to RxJava Observable
+  /**
+   * Adapt Flux to RxJava Observable.
+   *
+   * @param flux flux
+   * @return Observable
+   */
 	Observable<User> fromFluxToObservable(Flux<User> flux) {
-		return null;
+		return Observable.fromPublisher(flux);
 	}
 
-	// TODO Adapt RxJava Observable to Flux
+  /**
+   * Adapt RxJava Observable to Flux.
+   *
+   * @param observable observable
+   * @return Flux
+   */
 	Flux<User> fromObservableToFlux(Observable<User> observable) {
-		return null;
+		return Flux.from(observable.toFlowable(BackpressureStrategy.BUFFER));
 	}
 
 //========================================================================================
 
-	// TODO Adapt Mono to RxJava Single
+  /**
+   * Adapt Mono to RxJava Single.
+   *
+   * @param mono mono
+   * @return Single
+   */
 	Single<User> fromMonoToSingle(Mono<User> mono) {
-		return null;
+		return Single.fromPublisher(mono);
 	}
 
-	// TODO Adapt RxJava Single to Mono
+  /**
+   * Adapt RxJava Single to Mono.
+   *
+   * @param single single
+   * @return Mono
+   */
 	Mono<User> fromSingleToMono(Single<User> single) {
-		return null;
+		return Mono.from(single.toFlowable());
 	}
 
 //========================================================================================
 
-	// TODO Adapt Mono to Java 8+ CompletableFuture
+  /**
+   * Adapt Mono to Java 8+ CompletableFuture.
+   *
+   * @param mono mono
+   * @return CompletableFuture
+   */
 	CompletableFuture<User> fromMonoToCompletableFuture(Mono<User> mono) {
-		return null;
+		return mono.toFuture();
 	}
 
-	// TODO Adapt Java 8+ CompletableFuture to Mono
+  /**
+   * Adapt Java 8+ CompletableFuture to Mono.
+   *
+   * @param future future
+   * @return Mono
+   */
 	Mono<User> fromCompletableFutureToMono(CompletableFuture<User> future) {
-		return null;
+		return Mono.fromFuture(future);
 	}
 
 }

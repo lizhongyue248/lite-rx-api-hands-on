@@ -13,16 +13,26 @@ public class Part10ReactiveToBlocking {
 
 //========================================================================================
 
-	// TODO Return the user contained in that Mono
+  /**
+   * Return the user contained in that Mono.
+   *
+   * @param mono mono
+   * @return User
+   */
 	User monoToValue(Mono<User> mono) {
-		return null;
+		return mono.block();
 	}
 
 //========================================================================================
 
-	// TODO Return the users contained in that Flux
+  /**
+   * Return the users contained in that Flux.
+   *
+   * @param flux flux
+   * @return Iterable
+   */
 	Iterable<User> fluxToValues(Flux<User> flux) {
-		return null;
+		return flux.toIterable();
 	}
 
 }
